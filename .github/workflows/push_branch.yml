@@ -33,13 +33,13 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "This job's status is ${{ job.status }}."
+      - run: echo "Install package itself"|
+          poetry install
       - name: Run pre-commit hooks
         run: |
           pip install pre-commit |
           pre-commit install-hooks |
           pre-commit run --all-file
-      - run: echo "Install package itself"|
-          poetry install
       # Step 3: run linter and tests
       - name: Run pre-commit hooks
         run: pre-commit run --all-file
