@@ -34,6 +34,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "This job's status is ${{ job.status }}."
       - run: echo "Install package itself"|
+          pip install poetry |
           poetry install
       - name: Run pre-commit hooks
         run: |
