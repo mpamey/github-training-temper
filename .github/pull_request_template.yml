@@ -1,0 +1,19 @@
+### Description
+[Describe what this change is about]
+
+### Link to [story/task](paste-link-here)
+
+### Minimum example showing behaviour
+[Write down commands to run, steps to follow, and expected output before/after changes]
+
+#### Before
+
+#### After
+
+### Checklist
+* [ ] Logs relevant information
+* [ ] Has relevant unit test(s)
+* [ ] Has relevant integration test(s)
+* Has documentation in:
+  * [ ] [Confluence](link-to-confluence)
+  * [ ] Readme

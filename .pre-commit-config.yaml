@@ -12,6 +12,7 @@ repos:
       - id: check-docstring-first
       - id: debug-statements
       - id: check-yaml
+        exclude: '(?x)(\.github)'
       - id: check-ast
       - id: check-toml
   - repo: https://github.com/ambv/black
