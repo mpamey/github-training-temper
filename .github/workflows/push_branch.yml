@@ -33,21 +33,20 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "This job's status is ${{ job.status }}."
+      - run: sudo apt install -y graphviz graphviz-dev
+      - run: echo "Install requirements"|
+          python3 -m venv venv |
+          . venv/bin/activate |
+          python3 -m pip install -r requirements.txt
+      - run: echo "Install additional packages"|
+          . venv/bin/activate |
+          python3 -m pip install dbConnect databricks-cli dbx delta-spark mlflow
       - run: echo "Install package itself"|
-          pip install poetry |
-          poetry install
-      - name: Run pre-commit hooks
-        run: |
-          pip install pre-commit |
-          pre-commit install-hooks |
-          pre-commit run --all-file
+          . venv/bin/activate |
+          python3 -m pip install -e ".[dev]"
       # Step 3: run linter and tests
       - name: Run pre-commit hooks
         run: pre-commit run --all-file
       - run: |
-            poetry pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=html
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v2
-        with:
-          name: code-coverage-report
-          path: htmlcov/
+            . venv/bin/activate |
+            pytest tests
